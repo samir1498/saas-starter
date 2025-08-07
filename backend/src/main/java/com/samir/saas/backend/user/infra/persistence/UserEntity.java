@@ -31,9 +31,12 @@ public class UserEntity {
 
     @PrePersist
     protected void onCreate() {
-        this.id = UUID.randomUUID();
-        this.createdAt = Instant.now();
-        this.updatedAt = Instant.now();
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
+        Instant now = Instant.now();
+        this.createdAt = now;
+        this.updatedAt = now;
     }
 
     @PreUpdate
