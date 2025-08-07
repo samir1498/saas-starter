@@ -4,7 +4,16 @@ Goal: Build a clean multi-tenant SaaS starter with Spring Boot (backend) and Ang
 
 ---
 
-## ✅ Step 1: Dev Environment (Done)
+## ✅ Step 1: Backend – API Setup
+
+* [x] Create Spring Boot app (`saas-backend`)
+* [x] Connect to Postgres using `.env`
+* [x] `/health` endpoint
+* [x] Confirm DB connection
+
+---
+
+## 🔨 Step 2: Dev Environment (Done)
 
 * Docker Compose: Postgres + Redis
 * `.env.example` created
@@ -13,18 +22,9 @@ Goal: Build a clean multi-tenant SaaS starter with Spring Boot (backend) and Ang
 
 ---
 
-## 🔨 Step 2: Backend – API Setup
-
-* [ ] Create Spring Boot app (`saas-backend`)
-* [ ] Connect to Postgres using `.env`
-* [ ] `/health` endpoint
-* [ ] Confirm DB connection
-
----
-
 ## 🔐 Step 3: Backend – Auth (JWT)
 
-* [ ] `User` entity (id, email, password, etc.)
+* [x] `User` sub domain (entity and repositories)
 * [ ] Register + Login endpoints
 * [ ] Hash password (BCrypt)
 * [ ] Issue JWT on login
