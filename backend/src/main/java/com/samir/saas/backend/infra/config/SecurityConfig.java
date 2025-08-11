@@ -26,7 +26,7 @@ public class SecurityConfig {
         JwtAuthFilter filter = new JwtAuthFilter(jwtService, userRepository);
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(a -> a
-                        .requestMatchers("/auth/**", "/health").permitAll()
+                        .requestMatchers("/auth/**", "/actuator/health").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
