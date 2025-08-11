@@ -1,17 +1,26 @@
 spring:
+  profiles:
+    active: dev # Default to dev unless overridden with --spring.profiles.active=prod
+---
+# Dev profile: load .env automatically
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  config.activate.on-profile: dev
+
   application:
     name: backend
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:saas_db}
-    username: ${POSTGRES_USER:saas_user}
-    password: ${POSTGRES_PASSWORD:saas_pass}
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   redis:
     data:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
 
   jpa:
     hibernate:
@@ -30,7 +39,19 @@ management:
       exposure:
         include: health, info, metrics
 
-# JWT Configuration
 jwt:
   secret: ${JWT_SECRET}
   expiration: 3600000
+  
+security:
+  config:
+    csrf:
+      enabled: false
+
+---
+# Prod profile: no .env, rely on real env vars
+spring:
+  config.activate.on-profile: prod
+
+  application:
+    name: backend
